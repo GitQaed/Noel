@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Admin noel{% endblock %}
+
+{% block body %}
+{% include "nav.html.twig" %}
+
+<h1 class="text-center">Liste des produits</h1>
+
+{% for type, message in app.flashes %}
+    <div class="alert alert-{{type}} col-6 mx-auto text-center">
+        {{message.0}}
+    </div>
+{% endfor %}
+
+        <table class="table table-white table-striped table-hover text-center">
+            <thead class="bg-light bg-gradient text-dark">
+                <tr>
+                    <th>ID Boule</th>
+                    <th>Titre</th>
+                    <th>Description</th>
+                    <th>Promotion</th>
+                    <th>Prix</th>
+                    <th>Photo</th>
+                    <th>Modifier</th>
+                    <th>Supprimer</th>
+                </tr>
+            </thead>
+
+            <tbody>
+               {% for boule in boules %}
+                <tr>
+                    <td>{{boule.id}}</td>
+                    <td>{{boule.titre}}</td>
+                    <td>{{boule.description}}</td>
+                    <td>{{boule.promotion}}</td>
+                    <td>{{boule.prix}}</td>
+                    <td>{{boule.photo}}</td>
+                    <td><a href="{{path("modifier_boule", {"id" : boule.id} )}}">Modifier</a></td>
+                    <td><a href="{{path("supprimer_boule", {"id" : boule.id} )}}">Supprimer</a></td>
+                </tr>
+               {% endfor %}
+            </tbody>
+        </table>
+<div class="row justify-content-start m-2">
+<a href="{{path("ajout_boule")}}" class="btn btn-success p-2 col-2 bg-gradient">Nouveau produit</a>
+</div>
+{% endblock %}

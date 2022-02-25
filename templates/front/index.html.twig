@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+{% block stylesheets %}
+            <style>
+            body{
+                background-color : #dc3545;
+            }
+            </style>
+        {% endblock %}
+{% block body %}
+    {% include "nav.html.twig" %}
+    <h1 class="text-center text-light">Bienvenue sur le site de Noel & Cie</h1>
+    <h6 class="text-center fst-italic text-light">Les meilleurs produits du marché</h6>
+    <div class="col-md-12 d-flex justify-content-around">
+
+    {% for boule in boules %}
+        
+            <a href="{{ path("boule_presentation", {"boule" : boule.titre}) }}"><img src="{{asset("") ~ boule.photo }}" alt="" class="rounded-circle"></a>
+
+    {% endfor %}
+
+    </div>
+
+
+
+{% endblock %}
