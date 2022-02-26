@@ -1,9 +1,35 @@
 {% extends "front/index.html.twig" %}
 
-{% block title %}{{boule.titre}}{% endblock %}
+{% block title %}{{boules.titre}}{% endblock %}
 
 {% block body %}
+    {% include "nav.html.twig" %}
+        <br>
 
-
-
+        <div class="d-flex justify-content-around">
+            <img src="{{asset("") ~ boules.photo }}" alt="" class="rounded-circle">
+        </div>
+        <div class="d-flex justify-content-around">
+            <h1 class="text-light">{{boules.titre}}</h1>
+        </div>
+        <div class="d-flex justify-content-around">
+            <h5 class="text-light fst-italic">{{boules.description}}</h5>
+        </div>
+        
+        
+        {% if boules.promotion != null %}
+        
+            <div class="d-flex flex-column justify-content-around col-md-4 mx-auto" id="cadre_blanc"> 
+                <h6 class="text-center">Super promotion de {{boules.promotion}}%</h6> 
+                <h6 class="text-center">Ne ratez pas cette occasion</h6>
+            </div>
+            <br>
+            <div class="d-flex justify-content-around col-md-2 mx-auto " > 
+                <a class="btn btn-success bg-gradient rounded">J'achète <span class="rounded text-danger ps-1 pe-1 bg-warning">{{boules.prix - (boules.prix * promotion)}}€</span></a> 
+            </div>
+        {% else %}
+            <div class="d-flex justify-content-around col-md-2 mx-auto " > 
+                <a class="btn btn-success bg-gradient rounded">J'achète <span class="rounded text-danger ps-1 pe-1 bg-warning">{{boules.prix}}€</span></a> 
+            </div>
+        {% endif %}
 {% endblock %}

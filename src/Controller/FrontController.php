@@ -14,16 +14,19 @@ class FrontController extends AbstractController
     {
         $boules = $bouleRepository->findAll();
         return $this->render('front/index.html.twig', [
-            'boules' => $boules,
+            'boules' => $boules
         ]);
     }
 
-    #[Route('/boule/{boule}', name: 'boule_presentation')]
-    public function boule($boule): Response
+    #[Route('/boule/{id}', name: 'boule_presentation')]
+    public function boule(BouleRepository $bouleRepository, $id): Response
     {
-        
+        $boules = $bouleRepository->find($id);
+        $promotion =(20/100);
         return $this->render('front/boule_presentation.html.twig', [
-            "boule" => $boule
+            "boules" => $boules,
+            "id" => $id,
+            "promotion" => $promotion
         ]);
     }
 

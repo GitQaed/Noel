@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\BouleRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\BouleRepository;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: BouleRepository::class)]
 class Boule
@@ -14,18 +15,23 @@ class Boule
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank([ "message" =>"Veuillez renseigner un titre" ] )]
+    #[Assert\Length(['min' => 3, 'max' => 30, "minMessage" => "3 caracteres minimum", "maxMessage" => "30 caracteres maximum"])]
     private $titre;
 
     #[ORM\Column(type: 'text')]
+    #[Assert\NotBlank([ "message" =>"Veuillez renseigner une description" ] )]
     private $description;
 
     #[ORM\Column(type: 'integer')]
+    #[Assert\NotBlank([ "message" =>"Veuillez renseigner un prix" ] )]
     private $prix;
 
     #[ORM\Column(type: 'integer', nullable: true)]
     private $promotion;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Assert\NotBlank([ "message" =>"Veuillez renseigner le chemin d'une photo" ] )]
     private $photo;
 
     public function getId(): ?int
@@ -38,7 +44,7 @@ class Boule
         return $this->titre;
     }
 
-    public function setTitre(string $titre): self
+    public function setTitre(?string $titre): self
     {
         $this->titre = $titre;
 
@@ -50,7 +56,7 @@ class Boule
         return $this->description;
     }
 
-    public function setDescription(string $description): self
+    public function setDescription(?string $description): self
     {
         $this->description = $description;
 
@@ -62,7 +68,7 @@ class Boule
         return $this->prix;
     }
 
-    public function setPrix(int $prix): self
+    public function setPrix(?int $prix): self
     {
         $this->prix = $prix;
 
@@ -86,7 +92,7 @@ class Boule
         return $this->photo;
     }
 
-    public function setPhoto(string $photo): self
+    public function setPhoto(?string $photo): self
     {
         $this->photo = $photo;
 
