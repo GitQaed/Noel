@@ -28,7 +28,7 @@ class FrontController extends AbstractController
             "boules" => $boules,
             "id" => $id,
             "promotion" => $promotion,
-            "page" => "présentation"
+            "page" => "boule_présentation"
         ]);
     }
 
