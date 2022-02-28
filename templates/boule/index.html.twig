@@ -28,7 +28,7 @@
             </thead>
 
             <tbody>
-               {% for boule in boules %}
+            {% for boule in boules %}
                 <tr>
                     <td>{{boule.id}}</td>
                     <td>{{boule.titre}}</td>
@@ -39,7 +39,7 @@
                     <td><a href="{{path("modifier_boule", {"id" : boule.id} )}}">Modifier</a></td>
                     <td><a href="{{path("supprimer_boule", {"id" : boule.id} )}}">Supprimer</a></td>
                 </tr>
-               {% endfor %}
+            {% endfor %}
             </tbody>
         </table>
 <div class="row justify-content-start m-2">

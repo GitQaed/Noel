@@ -6,16 +6,28 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav">
+
+      {% if page == "accueil" %}
+
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle text-warning" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Boules
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" href="#">Rouge</a></li>
-            <li><a class="dropdown-item" href="#">Bleue</a></li>
-            <li><a class="dropdown-item" href="#">Multicolore</a></li>
+            {% for boule in boules %}
+              <li><a class="dropdown-item" href="{{ path("boule_presentation", {"id" : boule.id}) }}">{{boule.titre}}</a></li>
+            {% endfor %}
           </ul>
         </li>
+
+      {% else %}
+
+        <li class="nav-item">
+          <a class="nav-link text-warning" href="{{path("front")}}">Retour à l'accueil</a>
+        </li>
+
+      {% endif %}
+
         <li class="nav-item">
           <a class="nav-link text-info" href="{{path("boule")}}">Admin</a>
         </li>

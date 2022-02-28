@@ -13,18 +13,20 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class BouleController extends AbstractController
 {
-    #[Route('/boule', name: 'boule')]
+    #[Route("/boule", name: "boule")]
     public function index(BouleRepository $bouleRepository): Response
     {
         $boules = $bouleRepository->findAll();
 
-        return $this->render('boule/index.html.twig', [
-            'boules' => $boules,
+        return $this->render("boule/index.html.twig", [
+            "boules" => $boules,
+            "page" => "liste_boule"
+
         ]);
     }
 
 
-    #[Route('/ajout_boule', name: 'ajout_boule')]
+    #[Route("/ajout_boule", name: "ajout_boule")]
     public function ajoutBoule(Request $requete, EntityManagerInterface $manager): Response
     {
         $boule = new Boule();
@@ -41,12 +43,12 @@ class BouleController extends AbstractController
 
         }
 
-        return $this->render('boule/ajout_boule.html.twig', ['form_boule' => $form->createView()]);
+        return $this->render("boule/ajout_boule.html.twig", ["form_boule" => $form->createView(), "page" => "ajout_boule"]);
     }
 
 
 
-    #[Route('/modifier_boule/{id}', name: 'modifier_boule')]
+    #[Route("/modifier_boule/{id}", name: "modifier_boule")]
     public function modifierBoule(Boule $boule, Request $requete, EntityManagerInterface $manager): Response
     {
 
@@ -63,12 +65,12 @@ class BouleController extends AbstractController
             return $this->redirectToRoute("boule");
         }
 
-        return $this->render("boule/modifier_boule.html.twig", ["form_boule" => $form->createView()]);
+        return $this->render("boule/modifier_boule.html.twig", ["form_boule" => $form->createView(), "page" => "modifier_boule"]);
 
     }
 
     
-    #[Route('/supprimer_boule/{id}', name: 'supprimer_boule')]
+    #[Route("/supprimer_boule/{id}", name: "supprimer_boule")]
     public function supprimerBoule(Boule $boule, EntityManagerInterface $manager): Response
     {
         
