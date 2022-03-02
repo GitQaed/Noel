@@ -21,7 +21,6 @@ class BouleController extends AbstractController
         return $this->render("boule/index.html.twig", [
             "boules" => $boules,
             "page" => "liste_boule"
-
         ]);
     }
 
